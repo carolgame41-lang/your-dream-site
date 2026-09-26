@@ -3,13 +3,22 @@ import { useState, type FormEvent } from "react";
 import {
   ArrowRight, Award, Baby, BadgeCheck, CalendarDays, Check, Clock3,
   Facebook, GraduationCap, HeartHandshake, Instagram, MapPin, Menu,
-  MessageCircle, ShieldCheck, Smile, Sparkles, Stethoscope, Tooth,
+  MessageCircle, ShieldCheck, Smile, Sparkles, Stethoscope,
   UsersRound, X,
 } from "lucide-react";
 import heroImage from "@/assets/dentist-hero.jpg";
 import profileImage from "@/assets/dentist-profile.jpg";
 import childImage from "@/assets/pediatric-care.jpg";
 import patientImage from "@/assets/patient-smile.jpg";
+
+function ToothIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M14 5c-6.2 2.4-8.4 8.8-6.5 15.2 1 3.3 3.3 5.6 4 9.2.8 4.3.5 11.6 4.9 12.9 4.7 1.4 4.6-12.6 8.1-12.6s3.4 14 8.1 12.6c4.4-1.3 4.1-8.6 4.9-12.9.7-3.6 3-5.9 4-9.2C43.4 13.8 41.2 7.4 35 5c-4.2-1.6-7.1 1.4-10.5 1.4S18.2 3.4 14 5Z" />
+      <path d="M19 11.5c2.3 1.2 4.5 1.5 7 .9" />
+    </svg>
+  );
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,6 +41,19 @@ const services = [
   { icon: Smile, title: "Próteses Dentárias", text: "Recupere a função e a estética do seu sorriso com conforto e segurança." },
   { icon: ShieldCheck, title: "Tratamento de Canal", text: "Salve seu dente com tecnologia e todo o cuidado necessário." },
   { icon: BadgeCheck, title: "Ortodontia", text: "Corrija o alinhamento dos dentes e melhore sua mordida." },
+];
+
+const heroBenefits = [
+  { icon: HeartHandshake, label: "Atendimento humanizado" },
+  { icon: Sparkles, label: "Tecnologia moderna" },
+  { icon: ShieldCheck, label: "Ambiente seguro e acolhedor" },
+  { icon: UsersRound, label: "Equipe especializada" },
+];
+
+const testimonials = [
+  { name: "Juliana S.", quote: "Meu filho adora ir ao consultório! O Dr. Daniel é super atencioso e faz toda a diferença no atendimento." },
+  { name: "Marcos T.", quote: "Profissional excelente, explica tudo com muita calma e segurança. Recomendo de olhos fechados!" },
+  { name: "Carla M.", quote: "Sempre fui muito bem atendida. Ambiente acolhedor e equipe incrível. Meu sorriso está nas melhores mãos!" },
 ];
 
 const faqs = [
@@ -59,7 +81,7 @@ function Index() {
         <div className="absolute inset-0 bg-[linear-gradient(90deg,var(--brand-deep)_0%,color-mix(in_oklab,var(--brand-deep)_92%,transparent)_38%,color-mix(in_oklab,var(--brand-deep)_28%,transparent)_70%,color-mix(in_oklab,var(--brand-deep)_48%,transparent)_100%)]" />
         <header className="page-shell relative z-20 flex h-24 items-center justify-between">
           <a href="#inicio" className="flex items-center gap-3" aria-label="Início">
-            <Tooth className="size-11 text-brand-cyan" strokeWidth={1.7} />
+            <ToothIcon className="size-11 text-brand-cyan" />
             <span><strong className="block text-lg font-black">Dr. Daniel Cesar</strong><small className="block text-xs text-brand-pale">Odontopediatria e Odontologia Geral</small></span>
           </a>
           <nav className="hidden items-center gap-8 text-sm font-bold lg:flex" aria-label="Navegação principal">
@@ -76,7 +98,7 @@ function Index() {
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-brand-pale">O Dr. Daniel Cesar é especialista em Odontopediatria e oferece um atendimento completo, unindo cuidado, prevenção e estética para o seu sorriso, do primeiro dentinho à vida adulta.</p>
             <a href="#agendamento" className="mt-7 inline-flex items-center gap-3 rounded-full bg-brand-cyan px-6 py-4 font-black text-brand-deep shadow-xl"><MessageCircle className="size-5" /> Agendar Consulta <span className="grid size-7 place-items-center rounded-full bg-background"><ArrowRight className="size-4" /></span></a>
             <div className="mt-9 grid max-w-2xl grid-cols-2 gap-4 text-xs font-bold md:grid-cols-4">
-              {[[HeartHandshake,"Atendimento humanizado"],[Sparkles,"Tecnologia moderna"],[ShieldCheck,"Ambiente seguro e acolhedor"],[UsersRound,"Equipe especializada"]].map(([Icon,label]) => <div key={String(label)} className="flex items-center gap-2"><span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-cyan/20 text-brand-cyan"><Icon className="size-5" /></span>{label}</div>)}
+              {heroBenefits.map(({ icon: Icon, label }) => <div key={label} className="flex items-center gap-2"><span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-cyan/20 text-brand-cyan"><Icon className="size-5" /></span>{label}</div>)}
             </div>
           </div>
         </div>
@@ -93,13 +115,13 @@ function Index() {
       <section id="sobre" className="bg-brand-deep py-24 text-primary-foreground">
         <div className="page-shell grid items-center gap-14 lg:grid-cols-2">
           <div><span className="section-label">Sobre o Dr. Daniel Cesar</span><h2 className="mt-5 text-4xl font-black leading-tight">Dedicação, experiência<br />e um cuidado que vai além<br />do consultório</h2><p className="mt-5 max-w-lg leading-relaxed text-brand-pale">Sou o Dr. Daniel Cesar, cirurgião-dentista com especialização em Odontopediatria. Acredito que cada sorriso tem uma história e merece um cuidado único, com atenção, respeito e muito carinho.</p><a href="#agendamento" className="mt-7 inline-flex items-center gap-3 rounded-full bg-brand-cyan px-6 py-3.5 font-extrabold text-brand-deep">Quero cuidar do meu sorriso <ArrowRight className="size-4" /></a><div className="mt-9 flex flex-wrap gap-8 text-xs font-bold"><span className="flex items-center gap-2"><Award className="size-8 text-brand-cyan" /> Especialista em<br />Odontopediatria</span><span className="flex items-center gap-2"><BadgeCheck className="size-8 text-brand-cyan" /> CRO/SP<br />000000</span><span className="flex items-center gap-2"><GraduationCap className="size-8 text-brand-cyan" /> Formação em<br />Odontologia</span></div></div>
-          <div className="relative mx-auto w-full max-w-md"><div className="aspect-square overflow-hidden rounded-full border-8 border-brand-cyan"><img src={profileImage} loading="lazy" width={816} height={816} alt="Retrato do Dr. Daniel Cesar" className="h-full w-full object-cover" /></div><Tooth className="absolute -bottom-3 -right-3 size-20 rotate-12 text-brand-cyan" /></div>
+          <div className="relative mx-auto w-full max-w-md"><div className="aspect-square overflow-hidden rounded-full border-8 border-brand-cyan"><img src={profileImage} loading="lazy" width={816} height={816} alt="Retrato do Dr. Daniel Cesar" className="h-full w-full object-cover" /></div><ToothIcon className="absolute -bottom-3 -right-3 size-20 rotate-12 text-brand-cyan" /></div>
         </div>
       </section>
 
       <section className="py-20">
         <div className="page-shell grid items-center gap-14 lg:grid-cols-2">
-          <div className="relative mx-auto max-w-lg"><img src={childImage} loading="lazy" width={912} height={800} alt="Atendimento odontopediátrico acolhedor" className="aspect-[1.08] w-full rounded-[50%] border-8 border-brand-cyan object-cover" /><Tooth className="absolute -left-4 top-4 size-16 -rotate-12 text-brand-cyan" /></div>
+          <div className="relative mx-auto max-w-lg"><img src={childImage} loading="lazy" width={912} height={800} alt="Atendimento odontopediátrico acolhedor" className="aspect-[1.08] w-full rounded-[50%] border-8 border-brand-cyan object-cover" /><ToothIcon className="absolute -left-4 top-4 size-16 -rotate-12 text-brand-cyan" /></div>
           <div><span className="section-label">Odontopediatria</span><h2 className="mt-4 text-4xl font-black leading-tight text-brand-deep">Porque o sorriso do seu filho merece um cuidado especial</h2><p className="mt-4 leading-relaxed text-muted-foreground">A odontopediatria é a base para um futuro com mais saúde e confiança. Aqui, o atendimento é lúdico, acolhedor e seguro, para que a criança tenha uma experiência positiva e sem traumas.</p><ul className="mt-6 space-y-3 font-bold text-brand-blue">{["Prevenção de cáries","Acompanhamento do crescimento bucal","Orientação para hábitos saudáveis"].map(item => <li key={item} className="flex items-center gap-3"><span className="grid size-5 place-items-center rounded-full bg-brand-soft"><Check className="size-3" /></span>{item}</li>)}</ul><a href="#agendamento" className="mt-7 inline-flex items-center gap-2 rounded-full bg-brand-cyan px-6 py-3.5 font-black text-brand-deep"><MessageCircle className="size-5" /> Agendar consulta</a></div>
         </div>
       </section>
@@ -113,7 +135,7 @@ function Index() {
       </section>
 
       <section id="depoimentos" className="py-20">
-        <div className="page-shell"><span className="section-label">Depoimentos</span><h2 className="mt-3 text-3xl font-black text-brand-deep">O que os pacientes dizem</h2><p className="mt-2 text-muted-foreground">Sorrisos reais, histórias reais. Veja o que nossos pacientes têm a dizer sobre o nosso atendimento.</p><div className="mt-9 grid gap-5 md:grid-cols-3">{[["Juliana S.","Meu filho adora ir ao consultório! O Dr. Daniel é super atencioso e faz toda a diferença no atendimento."],["Marcos T.","Profissional excelente, explica tudo com muita calma e segurança. Recomendo de olhos fechados!"],["Carla M.","Sempre fui muito bem atendida. Ambiente acolhedor e equipe incrível. Meu sorriso está nas melhores mãos!"]].map(([name,quote],i) => <article key={name} className="rounded-lg border border-brand-soft bg-card p-6 shadow-sm"><div className="flex items-center gap-3"><span className="grid size-12 place-items-center rounded-full bg-brand-soft font-black text-brand-blue">{name[0]}</span><div><div className="text-brand-yellow">★★★★★</div><strong className="text-sm text-brand-deep">{name}</strong></div></div><blockquote className="mt-4 text-sm italic leading-relaxed text-muted-foreground">“{quote}”</blockquote></article>)}</div></div>
+        <div className="page-shell"><span className="section-label">Depoimentos</span><h2 className="mt-3 text-3xl font-black text-brand-deep">O que os pacientes dizem</h2><p className="mt-2 text-muted-foreground">Sorrisos reais, histórias reais. Veja o que nossos pacientes têm a dizer sobre o nosso atendimento.</p><div className="mt-9 grid gap-5 md:grid-cols-3">{testimonials.map(({ name, quote }) => <article key={name} className="rounded-lg border border-brand-soft bg-card p-6 shadow-sm"><div className="flex items-center gap-3"><span className="grid size-12 place-items-center rounded-full bg-brand-soft font-black text-brand-blue">{name.charAt(0)}</span><div><div className="text-brand-yellow">★★★★★</div><strong className="text-sm text-brand-deep">{name}</strong></div></div><blockquote className="mt-4 text-sm italic leading-relaxed text-muted-foreground">“{quote}”</blockquote></article>)}</div></div>
       </section>
 
       <section className="bg-brand-deep py-12 text-center text-primary-foreground"><h2 className="text-2xl font-black">Ainda tem alguma dúvida?</h2><p className="mt-2 text-sm text-brand-pale">Confira as perguntas mais frequentes sobre nossos tratamentos e atendimento.</p><a href="#duvidas" className="mt-5 inline-flex rounded-full bg-brand-cyan px-6 py-3 text-sm font-black text-brand-deep">Ver todas as perguntas</a></section>
@@ -122,9 +144,9 @@ function Index() {
 
       <section id="agendamento" className="bg-brand-pale py-20"><div className="page-shell grid gap-12 lg:grid-cols-2"><div><span className="section-label">Agende sua consulta</span><h2 className="mt-4 text-4xl font-black text-brand-deep">Vamos cuidar do seu sorriso?</h2><p className="mt-4 max-w-md leading-relaxed text-muted-foreground">Preencha seus dados e nossa equipe entrará em contato para encontrar o melhor horário para você.</p><div className="mt-8 space-y-4 text-sm font-bold text-brand-blue"><p className="flex items-center gap-3"><MapPin className="size-5 text-brand-cyan" /> Av. Exemplo, 123 · Centro · São Paulo - SP</p><p className="flex items-center gap-3"><Clock3 className="size-5 text-brand-cyan" /> Segunda a Sexta: 08h às 18h · Sábado: 08h às 12h</p><p className="flex items-center gap-3"><CalendarDays className="size-5 text-brand-cyan" /> Atendimento com hora marcada</p></div></div><form onSubmit={submitAppointment} className="grid gap-4 rounded-lg bg-card p-7 shadow-lg"><label className="grid gap-2 text-sm font-bold">Nome<input required name="nome" className="rounded-md border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-ring" placeholder="Seu nome completo" /></label><label className="grid gap-2 text-sm font-bold">WhatsApp<input required name="telefone" type="tel" className="rounded-md border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-ring" placeholder="(11) 99999-9999" /></label><label className="grid gap-2 text-sm font-bold">Mensagem<textarea name="mensagem" rows={3} className="resize-none rounded-md border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-ring" placeholder="Conte como podemos ajudar" /></label><button type="submit" className="mt-1 inline-flex items-center justify-center gap-2 rounded-full bg-brand-cyan px-6 py-4 font-black text-brand-deep"><MessageCircle className="size-5" /> Solicitar agendamento</button>{sent && <p role="status" className="rounded-md bg-brand-pale p-3 text-center text-sm font-bold text-brand-blue">Recebemos sua solicitação! Em breve entraremos em contato.</p>}</form></div></section>
 
-      <section id="contato" className="grid min-h-72 md:grid-cols-[1.4fr_1fr]"><iframe title="Mapa do consultório" src="https://www.google.com/maps?q=Centro,+S%C3%A3o+Paulo,+SP&output=embed" loading="lazy" className="h-80 w-full border-0 md:h-full" /><div className="flex items-center bg-background p-10"><div><Tooth className="size-12 text-brand-cyan" /><h2 className="mt-4 text-2xl font-black text-brand-deep">Nosso consultório</h2><p className="mt-3 font-bold text-brand-blue">Av. Exemplo, 123 · Centro<br />São Paulo - SP</p><a href="https://www.google.com/maps/search/?api=1&query=Centro%2C%20S%C3%A3o%20Paulo%2C%20SP" target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand-cyan px-5 py-3 text-sm font-black text-brand-deep"><MapPin className="size-4" /> Ver no Google Maps</a><p className="mt-7 font-hand text-3xl text-brand-cyan">Estamos aqui para cuidar do seu sorriso! ♡</p></div></div></section>
+      <section id="contato" className="grid min-h-72 md:grid-cols-[1.4fr_1fr]"><iframe title="Mapa do consultório" src="https://www.google.com/maps?q=Centro,+S%C3%A3o+Paulo,+SP&output=embed" loading="lazy" className="h-80 w-full border-0 md:h-full" /><div className="flex items-center bg-background p-10"><div><ToothIcon className="size-12 text-brand-cyan" /><h2 className="mt-4 text-2xl font-black text-brand-deep">Nosso consultório</h2><p className="mt-3 font-bold text-brand-blue">Av. Exemplo, 123 · Centro<br />São Paulo - SP</p><a href="https://www.google.com/maps/search/?api=1&query=Centro%2C%20S%C3%A3o%20Paulo%2C%20SP" target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand-cyan px-5 py-3 text-sm font-black text-brand-deep"><MapPin className="size-4" /> Ver no Google Maps</a><p className="mt-7 font-hand text-3xl text-brand-cyan">Estamos aqui para cuidar do seu sorriso! ♡</p></div></div></section>
 
-      <footer className="bg-brand-deep py-12 text-primary-foreground"><div className="page-shell flex flex-col items-center justify-between gap-7 md:flex-row"><a href="#inicio" className="flex items-center gap-3"><Tooth className="size-10 text-brand-cyan" /><span><strong className="block">Dr. Daniel Cesar</strong><small className="text-brand-pale">Odontopediatria e Odontologia Geral</small></span></a><nav className="flex flex-wrap justify-center gap-5 text-xs font-bold"><a href="#inicio">Início</a><a href="#sobre">Sobre</a><a href="#servicos">Serviços</a><a href="#depoimentos">Depoimentos</a><a href="#contato">Contato</a></nav><div className="flex items-center gap-3"><a href="#agendamento" className="rounded-full bg-brand-cyan px-4 py-2 text-xs font-black text-brand-deep">Agendar Consulta</a><a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram className="size-5" /></a><a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook"><Facebook className="size-5" /></a></div></div><p className="page-shell mt-9 text-center text-xs text-brand-pale">© 2026 Dr. Daniel Cesar · Odontopediatria e Odontologia Geral. Todos os direitos reservados.</p></footer>
+      <footer className="bg-brand-deep py-12 text-primary-foreground"><div className="page-shell flex flex-col items-center justify-between gap-7 md:flex-row"><a href="#inicio" className="flex items-center gap-3"><ToothIcon className="size-10 text-brand-cyan" /><span><strong className="block">Dr. Daniel Cesar</strong><small className="text-brand-pale">Odontopediatria e Odontologia Geral</small></span></a><nav className="flex flex-wrap justify-center gap-5 text-xs font-bold"><a href="#inicio">Início</a><a href="#sobre">Sobre</a><a href="#servicos">Serviços</a><a href="#depoimentos">Depoimentos</a><a href="#contato">Contato</a></nav><div className="flex items-center gap-3"><a href="#agendamento" className="rounded-full bg-brand-cyan px-4 py-2 text-xs font-black text-brand-deep">Agendar Consulta</a><a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram className="size-5" /></a><a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook"><Facebook className="size-5" /></a></div></div><p className="page-shell mt-9 text-center text-xs text-brand-pale">© 2026 Dr. Daniel Cesar · Odontopediatria e Odontologia Geral. Todos os direitos reservados.</p></footer>
     </main>
   );
 }
