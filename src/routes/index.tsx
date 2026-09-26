@@ -161,7 +161,25 @@ function Index() {
       </section>
 
       <section id="depoimentos" className="py-20">
-        <div className="page-shell"><span className="section-label">Depoimentos</span><h2 className="mt-3 text-3xl font-black text-brand-deep">O que os pacientes dizem</h2><p className="mt-2 text-muted-foreground">Sorrisos reais, histórias reais. Veja o que nossos pacientes têm a dizer sobre o nosso atendimento.</p><div className="mt-9 grid gap-5 md:grid-cols-3">{testimonials.map(({ name, date, quote }) => <article key={name} className="rounded-lg border border-brand-soft bg-card p-6 shadow-sm"><div className="flex items-center gap-3"><span className="grid size-11 shrink-0 place-items-center rounded-full bg-brand-blue font-black text-brand-light">{name.charAt(0)}</span><div className="min-w-0"><strong className="block truncate text-sm text-brand-deep">{name}</strong><span className="text-xs text-muted-foreground">{date}</span></div><span className="ml-auto grid size-8 shrink-0 place-items-center rounded-full bg-brand-soft text-xs font-black text-brand-blue" aria-label="Avaliação do Google">G</span></div><div className="mt-3 flex items-center gap-1 text-brand-yellow" aria-label="5 de 5 estrelas">{[1,2,3,4,5].map(i => <Star key={i} className="size-4 fill-current" />)}</div><blockquote className="mt-3 text-sm leading-relaxed text-muted-foreground">“{quote}”</blockquote><p className="mt-3 text-xs font-bold text-muted-foreground">Publicado no Google</p></article>)}</div></div>
+        <div className="page-shell">
+          <div className="text-center"><span className="section-label">Depoimentos</span><h2 className="mt-3 text-3xl font-black text-brand-deep">O que os pacientes dizem no Google</h2></div>
+          <div className="mx-auto mt-9 max-w-5xl overflow-hidden rounded-2xl border border-brand-soft bg-card shadow-xl">
+            <div className="flex flex-col items-center gap-6 border-b border-brand-soft p-7 md:flex-row md:items-center md:gap-10">
+              <div className="flex items-center gap-4">
+                <span className="grid size-14 place-items-center rounded-full bg-brand-soft text-2xl font-black text-brand-blue">G</span>
+                <div><strong className="block text-lg text-brand-deep">Dr. Daniel Cesar — Odontologia</strong><span className="text-sm text-muted-foreground">Av. Exemplo, 123 · Centro, São Paulo - SP</span></div>
+              </div>
+              <div className="flex items-center gap-6 md:ml-auto">
+                <div className="text-center"><span className="block text-5xl font-black text-brand-deep">4,9</span><div className="mt-1 flex justify-center gap-0.5 text-brand-yellow">{[1,2,3,4,5].map(i => <Star key={i} className="size-4 fill-current" />)}</div><span className="mt-1 block text-xs text-muted-foreground">127 avaliações</span></div>
+                <div className="w-44 space-y-1.5">{ratingBars.map(({ stars, percent }) => <div key={stars} className="flex items-center gap-2 text-xs text-muted-foreground"><span className="w-3 text-right font-bold">{stars}</span><div className="h-2 flex-1 overflow-hidden rounded-full bg-brand-soft"><div className="h-full rounded-full bg-brand-yellow" style={{ width: `${percent}%` }} /></div></div>)}</div>
+              </div>
+            </div>
+            <div className="grid gap-5 p-7 md:grid-cols-2 lg:grid-cols-3">
+              {testimonials.map(({ name, initial, color, reviews, date, quote }) => <article key={name} className="rounded-lg border border-brand-soft bg-background p-5 shadow-sm"><div className="flex items-center gap-3"><span className={`grid size-10 shrink-0 place-items-center rounded-full font-black text-brand-light ${color}`}>{initial}</span><div className="min-w-0"><strong className="block truncate text-sm text-brand-deep">{name}</strong><span className="block text-xs text-muted-foreground">{reviews}</span></div><span className="ml-auto grid size-7 shrink-0 place-items-center rounded-full bg-brand-soft text-xs font-black text-brand-blue" aria-label="Avaliação do Google">G</span></div><div className="mt-3 flex items-center gap-2"><span className="flex gap-0.5 text-brand-yellow" aria-label="5 de 5 estrelas">{[1,2,3,4,5].map(i => <Star key={i} className="size-3.5 fill-current" />)}</span><span className="text-xs text-muted-foreground">{date}</span></div><blockquote className="mt-3 text-sm leading-relaxed text-muted-foreground">{quote}</blockquote></article>)}
+            </div>
+            <div className="border-t border-brand-soft bg-brand-pale p-5 text-center"><a href="https://www.google.com/maps/search/?api=1&query=Centro%2C%20S%C3%A3o%20Paulo%2C%20SP" target="_blank" rel="noreferrer" className="text-sm font-black text-brand-blue underline-offset-4 hover:underline">Ver todas as avaliações no Google</a></div>
+          </div>
+        </div>
       </section>
 
       <section id="porque-agendar" className="bg-brand-deep py-20 text-brand-light">
