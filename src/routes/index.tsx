@@ -78,12 +78,14 @@ const faqs = [
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [sent, setSent] = useState(false);
 
   function submitAppointment(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSent(true);
-    event.currentTarget.reset();
+    const data = new FormData(event.currentTarget);
+    const name = String(data.get("nome") ?? "").trim().slice(0, 100);
+    const message = String(data.get("mensagem") ?? "").trim().slice(0, 500);
+    const text = `Olá, Dr. Daniel! Meu nome é ${name}. ${message || "Gostaria de agendar uma consulta."}`;
+    window.open(whatsappLink(text), "_blank", "noopener,noreferrer");
   }
 
   return (
@@ -99,7 +101,7 @@ function Index() {
           <nav className="hidden items-center gap-8 text-sm font-bold lg:flex" aria-label="Navegação principal">
             <a href="#inicio" className="text-brand-cyan">Início</a><a href="#sobre">Sobre</a><a href="#servicos">Serviços</a><a href="#depoimentos">Depoimentos</a><a href="#contato">Contato</a>
           </nav>
-          <a href="#agendamento" className="hidden items-center gap-2 rounded-full bg-brand-cyan px-5 py-3 text-sm font-extrabold text-brand-deep shadow-lg lg:flex"><MessageCircle className="size-4" /> Agende sua consulta</a>
+          <a href={DEFAULT_WHATSAPP} target="_blank" rel="noreferrer" className="hidden items-center gap-2 rounded-full bg-brand-cyan px-5 py-3 text-sm font-extrabold text-brand-deep shadow-lg lg:flex"><MessageCircle className="size-4" /> Agende sua consulta</a>
           <button type="button" aria-label="Abrir menu" onClick={() => setMenuOpen(!menuOpen)} className="grid size-11 place-items-center rounded-full border border-brand-light/30 lg:hidden">{menuOpen ? <X /> : <Menu />}</button>
         </header>
         {menuOpen && <nav className="page-shell relative z-30 grid gap-4 rounded-lg bg-background p-5 font-bold text-foreground shadow-xl lg:hidden"><a href="#inicio" onClick={() => setMenuOpen(false)}>Início</a><a href="#sobre" onClick={() => setMenuOpen(false)}>Sobre</a><a href="#servicos" onClick={() => setMenuOpen(false)}>Serviços</a><a href="#depoimentos" onClick={() => setMenuOpen(false)}>Depoimentos</a><a href="#contato" onClick={() => setMenuOpen(false)}>Contato</a></nav>}
@@ -108,7 +110,7 @@ function Index() {
             <span className="inline-flex rounded-full border border-brand-cyan/60 px-4 py-2 text-xs font-extrabold uppercase text-brand-pale">Saúde bucal em todas as fases da vida</span>
             <h1 className="mt-6 text-5xl font-black leading-[1.02] md:text-7xl">Sorrisos saudáveis<br />para todas as idades</h1>
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-brand-pale">O Dr. Daniel Cesar é especialista em Odontopediatria e oferece um atendimento completo, unindo cuidado, prevenção e estética para o seu sorriso, do primeiro dentinho à vida adulta.</p>
-            <a href="#agendamento" className="mt-7 inline-flex items-center gap-3 rounded-full bg-brand-cyan px-6 py-4 font-black text-brand-deep shadow-xl"><MessageCircle className="size-5" /> Agendar Consulta <span className="grid size-7 place-items-center rounded-full bg-background"><ArrowRight className="size-4" /></span></a>
+            <a href={DEFAULT_WHATSAPP} target="_blank" rel="noreferrer" className="mt-7 inline-flex items-center gap-3 rounded-full bg-brand-cyan px-6 py-4 font-black text-brand-deep shadow-xl"><MessageCircle className="size-5" /> Agendar Consulta <span className="grid size-7 place-items-center rounded-full bg-background"><ArrowRight className="size-4" /></span></a>
             <div className="mt-9 grid max-w-2xl grid-cols-2 gap-4 text-xs font-bold md:grid-cols-4">
               {heroBenefits.map(({ icon: Icon, label }) => <div key={label} className="flex items-center gap-2"><span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-cyan/20 text-brand-cyan"><Icon className="size-5" /></span>{label}</div>)}
             </div>
