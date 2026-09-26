@@ -15,6 +15,7 @@ import heroImage from "@/assets/dentist-hero.jpg";
 import profileImage from "@/assets/dentist-profile.jpg";
 import childImage from "@/assets/pediatric-care.jpg";
 import patientImage from "@/assets/patient-smile.jpg";
+import presentingImage from "@/assets/dentist-presenting.jpg";
 
 function ToothIcon({ className }: { className?: string }) {
   return (
@@ -56,9 +57,20 @@ const heroBenefits = [
 ];
 
 const testimonials = [
-  { name: "Juliana Souza", date: "há 2 semanas", quote: "Meu filho adora ir ao consultório! O Dr. Daniel é super atencioso e faz toda a diferença no atendimento." },
-  { name: "Marcos Teixeira", date: "há 1 mês", quote: "Profissional excelente, explica tudo com muita calma e segurança. Recomendo de olhos fechados!" },
-  { name: "Carla Mendes", date: "há 3 meses", quote: "Sempre fui muito bem atendida. Ambiente acolhedor e equipe incrível. Meu sorriso está nas melhores mãos!" },
+  { name: "Juliana Souza", initial: "J", color: "bg-brand-blue", reviews: "12 avaliações", date: "há 2 semanas", quote: "Meu filho adora ir ao consultório! O Dr. Daniel é super atencioso e faz toda a diferença no atendimento. O cuidado com as crianças é impressionante." },
+  { name: "Marcos Teixeira", initial: "M", color: "bg-brand-cyan", reviews: "5 avaliações", date: "há 1 mês", quote: "Profissional excelente, explica tudo com muita calma e segurança. Fiz um tratamento de canal e não senti nada. Recomendo de olhos fechados!" },
+  { name: "Carla Mendes", initial: "C", color: "bg-brand-deep", reviews: "8 avaliações", date: "há 3 meses", quote: "Sempre fui muito bem atendida. Ambiente acolhedor e equipe incrível. Meu sorriso está nas melhores mãos!" },
+  { name: "Roberto Alves", initial: "R", color: "bg-brand-blue", reviews: "3 avaliações", date: "há 3 meses", quote: "Atendimento pontual e muito profissional. O Dr. Daniel tirou todas as minhas dúvidas sobre o clareamento. Resultado ficou perfeito." },
+  { name: "Fernanda Lima", initial: "F", color: "bg-brand-cyan", reviews: "21 avaliações", date: "há 4 meses", quote: "Levei minha filha de 4 anos pela primeira vez e foi uma experiência maravilhosa. Ela saiu de lá pedindo para voltar!" },
+  { name: "Paulo Henrique", initial: "P", color: "bg-brand-deep", reviews: "7 avaliações", date: "há 5 meses", quote: "Coloquei aparelho ortodôntico com o Dr. Daniel e o acompanhamento é impecável. Preço justo e atendimento nota dez." },
+];
+
+const ratingBars = [
+  { stars: 5, percent: 92 },
+  { stars: 4, percent: 6 },
+  { stars: 3, percent: 2 },
+  { stars: 2, percent: 0 },
+  { stars: 1, percent: 0 },
 ];
 
 const whyReasons = [
@@ -149,14 +161,41 @@ function Index() {
       </section>
 
       <section id="depoimentos" className="py-20">
-        <div className="page-shell"><span className="section-label">Depoimentos</span><h2 className="mt-3 text-3xl font-black text-brand-deep">O que os pacientes dizem</h2><p className="mt-2 text-muted-foreground">Sorrisos reais, histórias reais. Veja o que nossos pacientes têm a dizer sobre o nosso atendimento.</p><div className="mt-9 grid gap-5 md:grid-cols-3">{testimonials.map(({ name, date, quote }) => <article key={name} className="rounded-lg border border-brand-soft bg-card p-6 shadow-sm"><div className="flex items-center gap-3"><span className="grid size-11 shrink-0 place-items-center rounded-full bg-brand-blue font-black text-brand-light">{name.charAt(0)}</span><div className="min-w-0"><strong className="block truncate text-sm text-brand-deep">{name}</strong><span className="text-xs text-muted-foreground">{date}</span></div><span className="ml-auto grid size-8 shrink-0 place-items-center rounded-full bg-brand-soft text-xs font-black text-brand-blue" aria-label="Avaliação do Google">G</span></div><div className="mt-3 flex items-center gap-1 text-brand-yellow" aria-label="5 de 5 estrelas">{[1,2,3,4,5].map(i => <Star key={i} className="size-4 fill-current" />)}</div><blockquote className="mt-3 text-sm leading-relaxed text-muted-foreground">“{quote}”</blockquote><p className="mt-3 text-xs font-bold text-muted-foreground">Publicado no Google</p></article>)}</div></div>
+        <div className="page-shell">
+          <div className="text-center"><span className="section-label">Depoimentos</span><h2 className="mt-3 text-3xl font-black text-brand-deep">O que os pacientes dizem no Google</h2></div>
+          <div className="mx-auto mt-9 max-w-5xl overflow-hidden rounded-2xl border border-brand-soft bg-card shadow-xl">
+            <div className="flex flex-col items-center gap-6 border-b border-brand-soft p-7 md:flex-row md:items-center md:gap-10">
+              <div className="flex items-center gap-4">
+                <span className="grid size-14 place-items-center rounded-full bg-brand-soft text-2xl font-black text-brand-blue">G</span>
+                <div><strong className="block text-lg text-brand-deep">Dr. Daniel Cesar — Odontologia</strong><span className="text-sm text-muted-foreground">Av. Exemplo, 123 · Centro, São Paulo - SP</span></div>
+              </div>
+              <div className="flex items-center gap-6 md:ml-auto">
+                <div className="text-center"><span className="block text-5xl font-black text-brand-deep">4,9</span><div className="mt-1 flex justify-center gap-0.5 text-brand-yellow">{[1,2,3,4,5].map(i => <Star key={i} className="size-4 fill-current" />)}</div><span className="mt-1 block text-xs text-muted-foreground">127 avaliações</span></div>
+                <div className="w-44 space-y-1.5">{ratingBars.map(({ stars, percent }) => <div key={stars} className="flex items-center gap-2 text-xs text-muted-foreground"><span className="w-3 text-right font-bold">{stars}</span><div className="h-2 flex-1 overflow-hidden rounded-full bg-brand-soft"><div className="h-full rounded-full bg-brand-yellow" style={{ width: `${percent}%` }} /></div></div>)}</div>
+              </div>
+            </div>
+            <div className="grid gap-5 p-7 md:grid-cols-2 lg:grid-cols-3">
+              {testimonials.map(({ name, initial, color, reviews, date, quote }) => <article key={name} className="rounded-lg border border-brand-soft bg-background p-5 shadow-sm"><div className="flex items-center gap-3"><span className={`grid size-10 shrink-0 place-items-center rounded-full font-black text-brand-light ${color}`}>{initial}</span><div className="min-w-0"><strong className="block truncate text-sm text-brand-deep">{name}</strong><span className="block text-xs text-muted-foreground">{reviews}</span></div><span className="ml-auto grid size-7 shrink-0 place-items-center rounded-full bg-brand-soft text-xs font-black text-brand-blue" aria-label="Avaliação do Google">G</span></div><div className="mt-3 flex items-center gap-2"><span className="flex gap-0.5 text-brand-yellow" aria-label="5 de 5 estrelas">{[1,2,3,4,5].map(i => <Star key={i} className="size-3.5 fill-current" />)}</span><span className="text-xs text-muted-foreground">{date}</span></div><blockquote className="mt-3 text-sm leading-relaxed text-muted-foreground">{quote}</blockquote></article>)}
+            </div>
+            <div className="border-t border-brand-soft bg-brand-pale p-5 text-center"><a href="https://www.google.com/maps/search/?api=1&query=Centro%2C%20S%C3%A3o%20Paulo%2C%20SP" target="_blank" rel="noreferrer" className="text-sm font-black text-brand-blue underline-offset-4 hover:underline">Ver todas as avaliações no Google</a></div>
+          </div>
+        </div>
       </section>
 
       <section id="porque-agendar" className="bg-brand-deep py-20 text-brand-light">
-        <div className="page-shell">
-          <div className="mx-auto max-w-2xl text-center"><span className="section-label">Por que agendar?</span><h2 className="mt-4 text-4xl font-black leading-tight">Por que agendar com o Dr. Daniel?</h2><p className="mt-4 leading-relaxed text-brand-pale">Mais do que tratar dentes, o Dr. Daniel cuida de pessoas. Veja o que torna o atendimento dele diferente.</p></div>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{whyReasons.map(({ icon: Icon, title, text }) => <article key={title} className="rounded-lg bg-brand-light/10 p-6"><span className="grid size-12 place-items-center rounded-full bg-brand-cyan/20 text-brand-cyan"><Icon className="size-6" /></span><h3 className="mt-4 font-black">{title}</h3><p className="mt-2 text-sm leading-relaxed text-brand-pale">{text}</p></article>)}</div>
-          <div className="mt-10 text-center"><a href={DEFAULT_WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 rounded-full bg-brand-cyan px-7 py-4 font-black text-brand-deep shadow-xl"><MessageCircle className="size-5" /> Agende sua consulta pelo WhatsApp</a></div>
+        <div className="page-shell grid items-center gap-12 lg:grid-cols-[0.9fr_1.4fr]">
+          <div className="relative mx-auto w-full max-w-sm">
+            <img src={presentingImage} loading="lazy" width={912} height={1008} alt="Dr. Daniel Cesar apresentando seus diferenciais" className="w-full rounded-2xl border-8 border-brand-cyan object-cover" />
+            <ToothIcon className="absolute -right-4 -top-4 size-16 rotate-12 text-brand-cyan" />
+            <p className="float-mark absolute -left-6 bottom-8 rotate-[-6deg] font-hand text-3xl leading-none text-brand-light">Cuidado que<br />faz sorrir! ♡</p>
+          </div>
+          <div>
+            <span className="section-label">Por que agendar?</span>
+            <h2 className="mt-4 text-4xl font-black leading-tight">Por que agendar com o Dr. Daniel?</h2>
+            <p className="mt-4 max-w-xl leading-relaxed text-brand-pale">Mais do que tratar dentes, o Dr. Daniel cuida de pessoas. Veja o que torna o atendimento dele diferente.</p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">{whyReasons.map(({ icon: Icon, title, text }) => <article key={title} className="rounded-lg bg-brand-light/10 p-5"><span className="grid size-11 place-items-center rounded-full bg-brand-cyan/20 text-brand-cyan"><Icon className="size-5" /></span><h3 className="mt-3 font-black">{title}</h3><p className="mt-1.5 text-sm leading-relaxed text-brand-pale">{text}</p></article>)}</div>
+            <a href={DEFAULT_WHATSAPP} target="_blank" rel="noreferrer" className="mt-8 inline-flex items-center gap-3 rounded-full bg-brand-cyan px-7 py-4 font-black text-brand-deep shadow-xl"><MessageCircle className="size-5" /> Agende sua consulta pelo WhatsApp</a>
+          </div>
         </div>
       </section>
 
