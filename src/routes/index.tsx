@@ -3,9 +3,14 @@ import { useState, type FormEvent } from "react";
 import {
   ArrowRight, Award, Baby, BadgeCheck, CalendarDays, Check, Clock3,
   Facebook, GraduationCap, HeartHandshake, Instagram, MapPin, Menu,
-  MessageCircle, ShieldCheck, Smile, Sparkles, Stethoscope,
+  MessageCircle, ShieldCheck, Smile, Sparkles, Star, Stethoscope,
   UsersRound, X,
 } from "lucide-react";
+
+const WHATSAPP_NUMBER = "5511999999999";
+const whatsappLink = (message: string) =>
+  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+const DEFAULT_WHATSAPP = whatsappLink("Olá, Dr. Daniel! Gostaria de agendar uma consulta.");
 import heroImage from "@/assets/dentist-hero.jpg";
 import profileImage from "@/assets/dentist-profile.jpg";
 import childImage from "@/assets/pediatric-care.jpg";
@@ -51,9 +56,16 @@ const heroBenefits = [
 ];
 
 const testimonials = [
-  { name: "Juliana S.", quote: "Meu filho adora ir ao consultório! O Dr. Daniel é super atencioso e faz toda a diferença no atendimento." },
-  { name: "Marcos T.", quote: "Profissional excelente, explica tudo com muita calma e segurança. Recomendo de olhos fechados!" },
-  { name: "Carla M.", quote: "Sempre fui muito bem atendida. Ambiente acolhedor e equipe incrível. Meu sorriso está nas melhores mãos!" },
+  { name: "Juliana Souza", date: "há 2 semanas", quote: "Meu filho adora ir ao consultório! O Dr. Daniel é super atencioso e faz toda a diferença no atendimento." },
+  { name: "Marcos Teixeira", date: "há 1 mês", quote: "Profissional excelente, explica tudo com muita calma e segurança. Recomendo de olhos fechados!" },
+  { name: "Carla Mendes", date: "há 3 meses", quote: "Sempre fui muito bem atendida. Ambiente acolhedor e equipe incrível. Meu sorriso está nas melhores mãos!" },
+];
+
+const whyReasons = [
+  { icon: HeartHandshake, title: "Atendimento humanizado", text: "Cada paciente é recebido com atenção, paciência e carinho, sem pressa e sem julgamentos." },
+  { icon: Baby, title: "Especialista em crianças", text: "Atendimento lúdico e acolhedor para os pequenos criarem uma relação positiva com o dentista." },
+  { icon: Sparkles, title: "Tecnologia moderna", text: "Equipamentos atualizados para tratamentos mais precisos, rápidos e confortáveis." },
+  { icon: CalendarDays, title: "Agendamento fácil", text: "Você agenda direto pelo WhatsApp, sem burocracia, e recebe a confirmação rapidinho." },
 ];
 
 const faqs = [
