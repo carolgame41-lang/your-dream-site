@@ -183,10 +183,19 @@ function Index() {
       </section>
 
       <section id="porque-agendar" className="bg-brand-deep py-20 text-brand-light">
-        <div className="page-shell">
-          <div className="mx-auto max-w-2xl text-center"><span className="section-label">Por que agendar?</span><h2 className="mt-4 text-4xl font-black leading-tight">Por que agendar com o Dr. Daniel?</h2><p className="mt-4 leading-relaxed text-brand-pale">Mais do que tratar dentes, o Dr. Daniel cuida de pessoas. Veja o que torna o atendimento dele diferente.</p></div>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{whyReasons.map(({ icon: Icon, title, text }) => <article key={title} className="rounded-lg bg-brand-light/10 p-6"><span className="grid size-12 place-items-center rounded-full bg-brand-cyan/20 text-brand-cyan"><Icon className="size-6" /></span><h3 className="mt-4 font-black">{title}</h3><p className="mt-2 text-sm leading-relaxed text-brand-pale">{text}</p></article>)}</div>
-          <div className="mt-10 text-center"><a href={DEFAULT_WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 rounded-full bg-brand-cyan px-7 py-4 font-black text-brand-deep shadow-xl"><MessageCircle className="size-5" /> Agende sua consulta pelo WhatsApp</a></div>
+        <div className="page-shell grid items-center gap-12 lg:grid-cols-[0.9fr_1.4fr]">
+          <div className="relative mx-auto w-full max-w-sm">
+            <img src={presentingImage} loading="lazy" width={912} height={1008} alt="Dr. Daniel Cesar apresentando seus diferenciais" className="w-full rounded-2xl border-8 border-brand-cyan object-cover" />
+            <ToothIcon className="absolute -right-4 -top-4 size-16 rotate-12 text-brand-cyan" />
+            <p className="float-mark absolute -left-6 bottom-8 rotate-[-6deg] font-hand text-3xl leading-none text-brand-light">Cuidado que<br />faz sorrir! ♡</p>
+          </div>
+          <div>
+            <span className="section-label">Por que agendar?</span>
+            <h2 className="mt-4 text-4xl font-black leading-tight">Por que agendar com o Dr. Daniel?</h2>
+            <p className="mt-4 max-w-xl leading-relaxed text-brand-pale">Mais do que tratar dentes, o Dr. Daniel cuida de pessoas. Veja o que torna o atendimento dele diferente.</p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">{whyReasons.map(({ icon: Icon, title, text }) => <article key={title} className="rounded-lg bg-brand-light/10 p-5"><span className="grid size-11 place-items-center rounded-full bg-brand-cyan/20 text-brand-cyan"><Icon className="size-5" /></span><h3 className="mt-3 font-black">{title}</h3><p className="mt-1.5 text-sm leading-relaxed text-brand-pale">{text}</p></article>)}</div>
+            <a href={DEFAULT_WHATSAPP} target="_blank" rel="noreferrer" className="mt-8 inline-flex items-center gap-3 rounded-full bg-brand-cyan px-7 py-4 font-black text-brand-deep shadow-xl"><MessageCircle className="size-5" /> Agende sua consulta pelo WhatsApp</a>
+          </div>
         </div>
       </section>
 
