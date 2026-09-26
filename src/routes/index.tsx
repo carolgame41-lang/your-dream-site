@@ -76,7 +76,7 @@ function Index() {
 
   return (
     <main className="bg-background text-foreground">
-      <section id="inicio" className="relative min-h-[680px] overflow-hidden bg-brand-deep text-primary-foreground">
+      <section id="inicio" className="relative min-h-[680px] overflow-hidden bg-brand-deep text-brand-light">
         <img src={heroImage} width={1280} height={900} alt="Dr. Daniel Cesar em seu consultório" className="absolute inset-0 h-full w-full object-cover object-[68%_center]" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,var(--brand-deep)_0%,color-mix(in_oklab,var(--brand-deep)_92%,transparent)_38%,color-mix(in_oklab,var(--brand-deep)_28%,transparent)_70%,color-mix(in_oklab,var(--brand-deep)_48%,transparent)_100%)]" />
         <header className="page-shell relative z-20 flex h-24 items-center justify-between">
@@ -88,7 +88,7 @@ function Index() {
             <a href="#inicio" className="text-brand-cyan">Início</a><a href="#sobre">Sobre</a><a href="#servicos">Serviços</a><a href="#depoimentos">Depoimentos</a><a href="#contato">Contato</a>
           </nav>
           <a href="#agendamento" className="hidden items-center gap-2 rounded-full bg-brand-cyan px-5 py-3 text-sm font-extrabold text-brand-deep shadow-lg lg:flex"><MessageCircle className="size-4" /> Agende sua consulta</a>
-          <button type="button" aria-label="Abrir menu" onClick={() => setMenuOpen(!menuOpen)} className="grid size-11 place-items-center rounded-full border border-primary-foreground/30 lg:hidden">{menuOpen ? <X /> : <Menu />}</button>
+          <button type="button" aria-label="Abrir menu" onClick={() => setMenuOpen(!menuOpen)} className="grid size-11 place-items-center rounded-full border border-brand-light/30 lg:hidden">{menuOpen ? <X /> : <Menu />}</button>
         </header>
         {menuOpen && <nav className="page-shell relative z-30 grid gap-4 rounded-lg bg-background p-5 font-bold text-foreground shadow-xl lg:hidden"><a href="#inicio" onClick={() => setMenuOpen(false)}>Início</a><a href="#sobre" onClick={() => setMenuOpen(false)}>Sobre</a><a href="#servicos" onClick={() => setMenuOpen(false)}>Serviços</a><a href="#depoimentos" onClick={() => setMenuOpen(false)}>Depoimentos</a><a href="#contato" onClick={() => setMenuOpen(false)}>Contato</a></nav>}
         <div className="page-shell relative z-10 flex min-h-[570px] items-center pb-16 pt-8">
@@ -102,7 +102,7 @@ function Index() {
             </div>
           </div>
         </div>
-        <p className="float-mark absolute right-[8%] top-36 hidden rotate-[-5deg] font-hand text-4xl leading-none text-primary-foreground xl:block">Sorrir<br />também é<br />saúde! ♡</p>
+        <p className="float-mark absolute right-[8%] top-36 hidden rotate-[-5deg] font-hand text-4xl leading-none text-brand-light xl:block">Sorrir<br />também é<br />saúde! ♡</p>
       </section>
 
       <section id="servicos" className="py-24">
@@ -112,7 +112,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="sobre" className="bg-brand-deep py-24 text-primary-foreground">
+      <section id="sobre" className="bg-brand-deep py-24 text-brand-light">
         <div className="page-shell grid items-center gap-14 lg:grid-cols-2">
           <div><span className="section-label">Sobre o Dr. Daniel Cesar</span><h2 className="mt-5 text-4xl font-black leading-tight">Dedicação, experiência<br />e um cuidado que vai além<br />do consultório</h2><p className="mt-5 max-w-lg leading-relaxed text-brand-pale">Sou o Dr. Daniel Cesar, cirurgião-dentista com especialização em Odontopediatria. Acredito que cada sorriso tem uma história e merece um cuidado único, com atenção, respeito e muito carinho.</p><a href="#agendamento" className="mt-7 inline-flex items-center gap-3 rounded-full bg-brand-cyan px-6 py-3.5 font-extrabold text-brand-deep">Quero cuidar do meu sorriso <ArrowRight className="size-4" /></a><div className="mt-9 flex flex-wrap gap-8 text-xs font-bold"><span className="flex items-center gap-2"><Award className="size-8 text-brand-cyan" /> Especialista em<br />Odontopediatria</span><span className="flex items-center gap-2"><BadgeCheck className="size-8 text-brand-cyan" /> CRO/SP<br />000000</span><span className="flex items-center gap-2"><GraduationCap className="size-8 text-brand-cyan" /> Formação em<br />Odontologia</span></div></div>
           <div className="relative mx-auto w-full max-w-md"><div className="aspect-square overflow-hidden rounded-full border-8 border-brand-cyan"><img src={profileImage} loading="lazy" width={816} height={816} alt="Retrato do Dr. Daniel Cesar" className="h-full w-full object-cover" /></div><ToothIcon className="absolute -bottom-3 -right-3 size-20 rotate-12 text-brand-cyan" /></div>
@@ -126,7 +126,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-brand-deep py-20 text-primary-foreground">
+      <section className="bg-brand-deep py-20 text-brand-light">
         <div className="page-shell grid items-center gap-12 lg:grid-cols-[1fr_0.8fr_0.8fr]">
           <div><span className="section-label">Odontologia geral</span><h2 className="mt-4 text-4xl font-black leading-tight">Mais saúde, estética<br />e bem-estar para o seu sorriso</h2><p className="mt-4 leading-relaxed text-brand-pale">Cuidar da sua saúde bucal é investir na sua qualidade de vida. Oferecemos tratamentos completos para adultos, com tecnologia, segurança e atendimento personalizado.</p><a href="#agendamento" className="mt-7 inline-flex items-center gap-2 rounded-full bg-brand-cyan px-6 py-3.5 font-black text-brand-deep">Conheça nossos tratamentos <ArrowRight className="size-4" /></a></div>
           <img src={patientImage} loading="lazy" width={816} height={816} alt="Paciente sorrindo após atendimento" className="aspect-square w-full rounded-full border-8 border-brand-cyan object-cover" />
@@ -138,7 +138,7 @@ function Index() {
         <div className="page-shell"><span className="section-label">Depoimentos</span><h2 className="mt-3 text-3xl font-black text-brand-deep">O que os pacientes dizem</h2><p className="mt-2 text-muted-foreground">Sorrisos reais, histórias reais. Veja o que nossos pacientes têm a dizer sobre o nosso atendimento.</p><div className="mt-9 grid gap-5 md:grid-cols-3">{testimonials.map(({ name, quote }) => <article key={name} className="rounded-lg border border-brand-soft bg-card p-6 shadow-sm"><div className="flex items-center gap-3"><span className="grid size-12 place-items-center rounded-full bg-brand-soft font-black text-brand-blue">{name.charAt(0)}</span><div><div className="text-brand-yellow">★★★★★</div><strong className="text-sm text-brand-deep">{name}</strong></div></div><blockquote className="mt-4 text-sm italic leading-relaxed text-muted-foreground">“{quote}”</blockquote></article>)}</div></div>
       </section>
 
-      <section className="bg-brand-deep py-12 text-center text-primary-foreground"><h2 className="text-2xl font-black">Ainda tem alguma dúvida?</h2><p className="mt-2 text-sm text-brand-pale">Confira as perguntas mais frequentes sobre nossos tratamentos e atendimento.</p><a href="#duvidas" className="mt-5 inline-flex rounded-full bg-brand-cyan px-6 py-3 text-sm font-black text-brand-deep">Ver todas as perguntas</a></section>
+      <section className="bg-brand-deep py-12 text-center text-brand-light"><h2 className="text-2xl font-black">Ainda tem alguma dúvida?</h2><p className="mt-2 text-sm text-brand-pale">Confira as perguntas mais frequentes sobre nossos tratamentos e atendimento.</p><a href="#duvidas" className="mt-5 inline-flex rounded-full bg-brand-cyan px-6 py-3 text-sm font-black text-brand-deep">Ver todas as perguntas</a></section>
 
       <section id="duvidas" className="py-16"><div className="mx-auto w-[min(760px,calc(100%-40px))]"><h2 className="text-center text-2xl font-black text-brand-deep">Perguntas Frequentes</h2><div className="mt-6 divide-y divide-brand-soft">{faqs.map(([q,a]) => <details key={q} className="group py-4"><summary className="flex cursor-pointer list-none items-center justify-between font-bold text-brand-blue">{q}<span className="ml-4 text-brand-cyan group-open:rotate-45">＋</span></summary><p className="pt-3 leading-relaxed text-muted-foreground">{a}</p></details>)}</div></div></section>
 
@@ -146,7 +146,7 @@ function Index() {
 
       <section id="contato" className="grid min-h-72 md:grid-cols-[1.4fr_1fr]"><iframe title="Mapa do consultório" src="https://www.google.com/maps?q=Centro,+S%C3%A3o+Paulo,+SP&output=embed" loading="lazy" className="h-80 w-full border-0 md:h-full" /><div className="flex items-center bg-background p-10"><div><ToothIcon className="size-12 text-brand-cyan" /><h2 className="mt-4 text-2xl font-black text-brand-deep">Nosso consultório</h2><p className="mt-3 font-bold text-brand-blue">Av. Exemplo, 123 · Centro<br />São Paulo - SP</p><a href="https://www.google.com/maps/search/?api=1&query=Centro%2C%20S%C3%A3o%20Paulo%2C%20SP" target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand-cyan px-5 py-3 text-sm font-black text-brand-deep"><MapPin className="size-4" /> Ver no Google Maps</a><p className="mt-7 font-hand text-3xl text-brand-cyan">Estamos aqui para cuidar do seu sorriso! ♡</p></div></div></section>
 
-      <footer className="bg-brand-deep py-12 text-primary-foreground"><div className="page-shell flex flex-col items-center justify-between gap-7 md:flex-row"><a href="#inicio" className="flex items-center gap-3"><ToothIcon className="size-10 text-brand-cyan" /><span><strong className="block">Dr. Daniel Cesar</strong><small className="text-brand-pale">Odontopediatria e Odontologia Geral</small></span></a><nav className="flex flex-wrap justify-center gap-5 text-xs font-bold"><a href="#inicio">Início</a><a href="#sobre">Sobre</a><a href="#servicos">Serviços</a><a href="#depoimentos">Depoimentos</a><a href="#contato">Contato</a></nav><div className="flex items-center gap-3"><a href="#agendamento" className="rounded-full bg-brand-cyan px-4 py-2 text-xs font-black text-brand-deep">Agendar Consulta</a><a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram className="size-5" /></a><a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook"><Facebook className="size-5" /></a></div></div><p className="page-shell mt-9 text-center text-xs text-brand-pale">© 2026 Dr. Daniel Cesar · Odontopediatria e Odontologia Geral. Todos os direitos reservados.</p></footer>
+      <footer className="bg-brand-deep py-12 text-brand-light"><div className="page-shell flex flex-col items-center justify-between gap-7 md:flex-row"><a href="#inicio" className="flex items-center gap-3"><ToothIcon className="size-10 text-brand-cyan" /><span><strong className="block">Dr. Daniel Cesar</strong><small className="text-brand-pale">Odontopediatria e Odontologia Geral</small></span></a><nav className="flex flex-wrap justify-center gap-5 text-xs font-bold"><a href="#inicio">Início</a><a href="#sobre">Sobre</a><a href="#servicos">Serviços</a><a href="#depoimentos">Depoimentos</a><a href="#contato">Contato</a></nav><div className="flex items-center gap-3"><a href="#agendamento" className="rounded-full bg-brand-cyan px-4 py-2 text-xs font-black text-brand-deep">Agendar Consulta</a><a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram className="size-5" /></a><a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook"><Facebook className="size-5" /></a></div></div><p className="page-shell mt-9 text-center text-xs text-brand-pale">© 2026 Dr. Daniel Cesar · Odontopediatria e Odontologia Geral. Todos os direitos reservados.</p></footer>
     </main>
   );
 }
