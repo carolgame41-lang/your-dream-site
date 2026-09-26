@@ -8,3 +8,8 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Project decisions
+
+- Keep the dental clinic experience as a single scrolling page because the supplied reference is one continuous, anchor-navigated presentation.
+- Store visual roles in `src/styles.css` semantic tokens so every section remains consistent and theme-safe.
