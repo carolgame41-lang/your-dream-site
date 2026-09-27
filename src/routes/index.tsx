@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import {
-  ArrowRight, Award, Baby, BadgeCheck, CalendarDays, Check, Clock3,
-  Facebook, GraduationCap, HeartHandshake, Instagram, MapPin, Menu,
-  MessageCircle, ShieldCheck, Smile, Sparkles, Star, Stethoscope,
-  UsersRound, X,
+  ArrowRight, Award, Baby, BadgeCheck, CalendarDays, Check, ChevronLeft,
+  ChevronRight, Clock3, Facebook, GraduationCap, HeartHandshake, Instagram,
+  MapPin, Menu, MessageCircle, ShieldCheck, Smile, Sparkles, Star,
+  Stethoscope, UsersRound, X,
 } from "lucide-react";
 
 const WHATSAPP_NUMBER = "5511999999999";
@@ -16,6 +16,12 @@ import profileImage from "@/assets/dentist-profile.jpg";
 import childImage from "@/assets/pediatric-care.jpg";
 import patientImage from "@/assets/patient-smile.jpg";
 import presentingImage from "@/assets/dentist-presenting.jpg";
+import avatarJuliana from "@/assets/avatar-juliana.jpg";
+import avatarMarcos from "@/assets/avatar-marcos.jpg";
+import avatarCarla from "@/assets/avatar-carla.jpg";
+import avatarRoberto from "@/assets/avatar-roberto.jpg";
+import avatarFernanda from "@/assets/avatar-fernanda.jpg";
+import avatarPaulo from "@/assets/avatar-paulo.jpg";
 
 function ToothIcon({ className }: { className?: string }) {
   return (
@@ -40,6 +46,17 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+function GoogleLogo({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z" />
+      <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.31 24 12 24z" />
+      <path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.98-3.09z" />
+      <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.98 3.09C6.22 6.86 8.87 4.75 12 4.75z" />
+    </svg>
+  );
+}
+
 const services = [
   { icon: Baby, title: "Odontopediatria", text: "Cuidado especial para os pequenos, com foco em prevenção e sorrisos saudáveis." },
   { icon: Stethoscope, title: "Clínica Geral", text: "Prevenção, limpeza, restaurações e muito mais para manter seu sorriso sempre saudável." },
@@ -57,12 +74,12 @@ const heroBenefits = [
 ];
 
 const testimonials = [
-  { name: "Juliana Souza", initial: "J", color: "bg-brand-blue", reviews: "12 avaliações", date: "há 2 semanas", quote: "Meu filho adora ir ao consultório! O Dr. Daniel é super atencioso e faz toda a diferença no atendimento. O cuidado com as crianças é impressionante." },
-  { name: "Marcos Teixeira", initial: "M", color: "bg-brand-cyan", reviews: "5 avaliações", date: "há 1 mês", quote: "Profissional excelente, explica tudo com muita calma e segurança. Fiz um tratamento de canal e não senti nada. Recomendo de olhos fechados!" },
-  { name: "Carla Mendes", initial: "C", color: "bg-brand-deep", reviews: "8 avaliações", date: "há 3 meses", quote: "Sempre fui muito bem atendida. Ambiente acolhedor e equipe incrível. Meu sorriso está nas melhores mãos!" },
-  { name: "Roberto Alves", initial: "R", color: "bg-brand-blue", reviews: "3 avaliações", date: "há 3 meses", quote: "Atendimento pontual e muito profissional. O Dr. Daniel tirou todas as minhas dúvidas sobre o clareamento. Resultado ficou perfeito." },
-  { name: "Fernanda Lima", initial: "F", color: "bg-brand-cyan", reviews: "21 avaliações", date: "há 4 meses", quote: "Levei minha filha de 4 anos pela primeira vez e foi uma experiência maravilhosa. Ela saiu de lá pedindo para voltar!" },
-  { name: "Paulo Henrique", initial: "P", color: "bg-brand-deep", reviews: "7 avaliações", date: "há 5 meses", quote: "Coloquei aparelho ortodôntico com o Dr. Daniel e o acompanhamento é impecável. Preço justo e atendimento nota dez." },
+  { name: "Juliana Souza", avatar: avatarJuliana, reviews: "12 avaliações", date: "há 2 semanas", quote: "Meu filho adora ir ao consultório! O Dr. Daniel é super atencioso e faz toda a diferença no atendimento. O cuidado com as crianças é impressionante." },
+  { name: "Marcos Teixeira", avatar: avatarMarcos, reviews: "5 avaliações", date: "há 1 mês", quote: "Profissional excelente, explica tudo com muita calma e segurança. Fiz um tratamento de canal e não senti nada. Recomendo de olhos fechados!" },
+  { name: "Carla Mendes", avatar: avatarCarla, reviews: "8 avaliações", date: "há 3 meses", quote: "Sempre fui muito bem atendida. Ambiente acolhedor e equipe incrível. Meu sorriso está nas melhores mãos!" },
+  { name: "Roberto Alves", avatar: avatarRoberto, reviews: "3 avaliações", date: "há 3 meses", quote: "Atendimento pontual e muito profissional. O Dr. Daniel tirou todas as minhas dúvidas sobre o clareamento. Resultado ficou perfeito." },
+  { name: "Fernanda Lima", avatar: avatarFernanda, reviews: "21 avaliações", date: "há 4 meses", quote: "Levei minha filha de 4 anos pela primeira vez e foi uma experiência maravilhosa. Ela saiu de lá pedindo para voltar!" },
+  { name: "Paulo Henrique", avatar: avatarPaulo, reviews: "7 avaliações", date: "há 5 meses", quote: "Coloquei aparelho ortodôntico com o Dr. Daniel e o acompanhamento é impecável. Preço justo e atendimento nota dez." },
 ];
 
 const ratingBars = [
@@ -90,6 +107,11 @@ const faqs = [
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const scrollTrack = (dir: number) => {
+    const el = trackRef.current;
+    if (el) el.scrollBy({ left: dir * el.clientWidth, behavior: "smooth" });
+  };
 
   function submitAppointment(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -162,7 +184,7 @@ function Index() {
 
       <section id="depoimentos" className="py-20">
         <div className="page-shell">
-          <div className="text-center"><span className="section-label">Depoimentos</span><h2 className="mt-3 text-3xl font-black text-brand-deep">O que os pacientes dizem no Google</h2></div>
+          <div className="text-center"><span className="section-label">Depoimentos</span><h2 className="mt-3 text-3xl font-black text-brand-deep">Veja o que meus <span className="text-brand-cyan">pacientes dizem sobre mim...</span></h2></div>
           <div className="mx-auto mt-9 max-w-5xl overflow-hidden rounded-2xl border border-brand-soft bg-card shadow-xl">
             <div className="flex flex-col items-center gap-6 border-b border-brand-soft p-7 md:flex-row md:items-center md:gap-10">
               <div className="flex items-center gap-4">
@@ -174,8 +196,26 @@ function Index() {
                 <div className="w-44 space-y-1.5">{ratingBars.map(({ stars, percent }) => <div key={stars} className="flex items-center gap-2 text-xs text-muted-foreground"><span className="w-3 text-right font-bold">{stars}</span><div className="h-2 flex-1 overflow-hidden rounded-full bg-brand-soft"><div className="h-full rounded-full bg-brand-yellow" style={{ width: `${percent}%` }} /></div></div>)}</div>
               </div>
             </div>
-            <div className="grid gap-5 p-7 md:grid-cols-2 lg:grid-cols-3">
-              {testimonials.map(({ name, initial, color, reviews, date, quote }) => <article key={name} className="rounded-lg border border-brand-soft bg-background p-5 shadow-sm"><div className="flex items-center gap-3"><span className={`grid size-10 shrink-0 place-items-center rounded-full font-black text-brand-light ${color}`}>{initial}</span><div className="min-w-0"><strong className="block truncate text-sm text-brand-deep">{name}</strong><span className="block text-xs text-muted-foreground">{reviews}</span></div><span className="ml-auto grid size-7 shrink-0 place-items-center rounded-full bg-brand-soft text-xs font-black text-brand-blue" aria-label="Avaliação do Google">G</span></div><div className="mt-3 flex items-center gap-2"><span className="flex gap-0.5 text-brand-yellow" aria-label="5 de 5 estrelas">{[1,2,3,4,5].map(i => <Star key={i} className="size-3.5 fill-current" />)}</span><span className="text-xs text-muted-foreground">{date}</span></div><blockquote className="mt-3 text-sm leading-relaxed text-muted-foreground">{quote}</blockquote></article>)}
+            <div className="relative p-7 pb-9">
+              <button type="button" onClick={() => scrollTrack(-1)} aria-label="Avaliações anteriores" className="absolute left-0 top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-brand-soft bg-background text-brand-deep shadow-md transition hover:bg-brand-pale"><ChevronLeft className="size-5" /></button>
+              <button type="button" onClick={() => scrollTrack(1)} aria-label="Próximas avaliações" className="absolute right-0 top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-brand-soft bg-background text-brand-deep shadow-md transition hover:bg-brand-pale"><ChevronRight className="size-5" /></button>
+              <div ref={trackRef} className="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 md:px-8">
+                {testimonials.map(({ name, avatar, reviews, date, quote }) => (
+                  <article key={name} className="w-full shrink-0 snap-start rounded-lg border border-brand-soft bg-background p-5 shadow-sm md:w-[calc(50%-10px)] lg:w-[calc((100%-2.5rem)/3)]">
+                    <div className="flex items-center gap-3">
+                      <img src={avatar} alt={`Foto de ${name}`} loading="lazy" className="size-10 shrink-0 rounded-full object-cover" />
+                      <div className="min-w-0">
+                        <strong className="block truncate text-sm text-brand-deep">{name}</strong>
+                        <span className="block text-xs text-muted-foreground">{date}</span>
+                      </div>
+                      <GoogleLogo className="ml-auto size-5 shrink-0" />
+                    </div>
+                    <div className="mt-3 flex gap-0.5 text-brand-yellow" aria-label="5 de 5 estrelas">{[1,2,3,4,5].map(i => <Star key={i} className="size-4 fill-current" />)}</div>
+                    <blockquote className="mt-2 text-sm leading-relaxed text-muted-foreground">{quote}</blockquote>
+                    <span className="mt-3 block text-xs font-semibold text-muted-foreground">{reviews}</span>
+                  </article>
+                ))}
+              </div>
             </div>
             <div className="border-t border-brand-soft bg-brand-pale p-5 text-center"><a href="https://www.google.com/maps/search/?api=1&query=Centro%2C%20S%C3%A3o%20Paulo%2C%20SP" target="_blank" rel="noreferrer" className="text-sm font-black text-brand-blue underline-offset-4 hover:underline">Ver todas as avaliações no Google</a></div>
           </div>
