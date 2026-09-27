@@ -184,7 +184,7 @@ function Index() {
 
       <section id="depoimentos" className="py-20">
         <div className="page-shell">
-          <div className="text-center"><span className="section-label">Depoimentos</span><h2 className="mt-3 text-3xl font-black text-brand-deep">O que os pacientes dizem no Google</h2></div>
+          <div className="text-center"><span className="section-label">Depoimentos</span><h2 className="mt-3 text-3xl font-black text-brand-deep">Veja o que meus <span className="text-brand-cyan">pacientes dizem sobre mim...</span></h2></div>
           <div className="mx-auto mt-9 max-w-5xl overflow-hidden rounded-2xl border border-brand-soft bg-card shadow-xl">
             <div className="flex flex-col items-center gap-6 border-b border-brand-soft p-7 md:flex-row md:items-center md:gap-10">
               <div className="flex items-center gap-4">
@@ -196,8 +196,26 @@ function Index() {
                 <div className="w-44 space-y-1.5">{ratingBars.map(({ stars, percent }) => <div key={stars} className="flex items-center gap-2 text-xs text-muted-foreground"><span className="w-3 text-right font-bold">{stars}</span><div className="h-2 flex-1 overflow-hidden rounded-full bg-brand-soft"><div className="h-full rounded-full bg-brand-yellow" style={{ width: `${percent}%` }} /></div></div>)}</div>
               </div>
             </div>
-            <div className="grid gap-5 p-7 md:grid-cols-2 lg:grid-cols-3">
-              {testimonials.map(({ name, initial, color, reviews, date, quote }) => <article key={name} className="rounded-lg border border-brand-soft bg-background p-5 shadow-sm"><div className="flex items-center gap-3"><span className={`grid size-10 shrink-0 place-items-center rounded-full font-black text-brand-light ${color}`}>{initial}</span><div className="min-w-0"><strong className="block truncate text-sm text-brand-deep">{name}</strong><span className="block text-xs text-muted-foreground">{reviews}</span></div><span className="ml-auto grid size-7 shrink-0 place-items-center rounded-full bg-brand-soft text-xs font-black text-brand-blue" aria-label="Avaliação do Google">G</span></div><div className="mt-3 flex items-center gap-2"><span className="flex gap-0.5 text-brand-yellow" aria-label="5 de 5 estrelas">{[1,2,3,4,5].map(i => <Star key={i} className="size-3.5 fill-current" />)}</span><span className="text-xs text-muted-foreground">{date}</span></div><blockquote className="mt-3 text-sm leading-relaxed text-muted-foreground">{quote}</blockquote></article>)}
+            <div className="relative p-7 pb-9">
+              <button type="button" onClick={() => scrollTrack(-1)} aria-label="Avaliações anteriores" className="absolute left-0 top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-brand-soft bg-background text-brand-deep shadow-md transition hover:bg-brand-pale"><ChevronLeft className="size-5" /></button>
+              <button type="button" onClick={() => scrollTrack(1)} aria-label="Próximas avaliações" className="absolute right-0 top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-brand-soft bg-background text-brand-deep shadow-md transition hover:bg-brand-pale"><ChevronRight className="size-5" /></button>
+              <div ref={trackRef} className="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 md:px-8">
+                {testimonials.map(({ name, avatar, reviews, date, quote }) => (
+                  <article key={name} className="w-full shrink-0 snap-start rounded-lg border border-brand-soft bg-background p-5 shadow-sm md:w-[calc(50%-10px)] lg:w-[calc((100%-2.5rem)/3)]">
+                    <div className="flex items-center gap-3">
+                      <img src={avatar} alt={`Foto de ${name}`} loading="lazy" className="size-10 shrink-0 rounded-full object-cover" />
+                      <div className="min-w-0">
+                        <strong className="block truncate text-sm text-brand-deep">{name}</strong>
+                        <span className="block text-xs text-muted-foreground">{date}</span>
+                      </div>
+                      <GoogleLogo className="ml-auto size-5 shrink-0" />
+                    </div>
+                    <div className="mt-3 flex gap-0.5 text-brand-yellow" aria-label="5 de 5 estrelas">{[1,2,3,4,5].map(i => <Star key={i} className="size-4 fill-current" />)}</div>
+                    <blockquote className="mt-2 text-sm leading-relaxed text-muted-foreground">{quote}</blockquote>
+                    <span className="mt-3 block text-xs font-semibold text-muted-foreground">{reviews}</span>
+                  </article>
+                ))}
+              </div>
             </div>
             <div className="border-t border-brand-soft bg-brand-pale p-5 text-center"><a href="https://www.google.com/maps/search/?api=1&query=Centro%2C%20S%C3%A3o%20Paulo%2C%20SP" target="_blank" rel="noreferrer" className="text-sm font-black text-brand-blue underline-offset-4 hover:underline">Ver todas as avaliações no Google</a></div>
           </div>
