@@ -1,10 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import {
-  ArrowRight, Award, Baby, BadgeCheck, CalendarDays, Check, ChevronLeft,
-  ChevronRight, Clock3, Facebook, GraduationCap, HeartHandshake, Instagram,
-  MapPin, Menu, MessageCircle, ShieldCheck, Smile, Sparkles, Star,
-  Stethoscope, UsersRound, X,
+  ArrowRight, Award, Baby, BadgeCheck, CalendarDays, Check, Clock3, Facebook,
+  GraduationCap, HeartHandshake, Instagram, MapPin, Menu, MessageCircle,
+  ShieldCheck, Smile, Sparkles, Star, Stethoscope, UsersRound, X,
 } from "lucide-react";
 
 const WHATSAPP_NUMBER = "5511999999999";
@@ -107,11 +106,22 @@ const faqs = [
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const scrollTrack = (dir: number) => {
-    const el = trackRef.current;
-    if (el) el.scrollBy({ left: dir * el.clientWidth, behavior: "smooth" });
-  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -60px 0px" },
+    );
+    document.querySelectorAll("[data-reveal]").forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
 
   function submitAppointment(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -156,7 +166,7 @@ function Index() {
       <section id="servicos" className="py-24">
         <div className="page-shell grid gap-12 lg:grid-cols-[0.8fr_1.6fr] lg:items-center">
           <div><span className="section-label">Nossos serviços</span><h2 className="mt-4 text-4xl font-black leading-tight text-brand-deep">Cuidado completo<br />para o seu sorriso</h2><p className="mt-4 leading-relaxed text-muted-foreground">Do atendimento preventivo aos tratamentos mais avançados, oferecemos soluções personalizadas para cada fase da sua vida.</p><a href={DEFAULT_WHATSAPP} target="_blank" rel="noreferrer" className="mt-7 inline-flex items-center gap-3 rounded-full bg-brand-cyan px-6 py-3.5 font-extrabold text-brand-deep"><MessageCircle className="size-5" /> Agende sua consulta</a></div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{services.map(({icon: Icon,title,text}) => <article key={title} className="rounded-lg bg-brand-pale p-6 transition-transform hover:-translate-y-1"><Icon className="size-8 text-brand-blue" /><h3 className="mt-4 font-black text-brand-deep">{title}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p></article>)}</div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{services.map(({icon: Icon,title,text}, i) => <article key={title} data-reveal style={{ transitionDelay: `${i * 70}ms` }} className="rounded-lg bg-brand-pale p-6 transition-transform hover:-translate-y-1"><Icon className="size-8 text-brand-blue" /><h3 className="mt-4 font-black text-brand-deep">{title}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p></article>)}</div>
         </div>
       </section>
 
@@ -196,12 +206,10 @@ function Index() {
                 <div className="w-44 space-y-1.5">{ratingBars.map(({ stars, percent }) => <div key={stars} className="flex items-center gap-2 text-xs text-muted-foreground"><span className="w-3 text-right font-bold">{stars}</span><div className="h-2 flex-1 overflow-hidden rounded-full bg-brand-soft"><div className="h-full rounded-full bg-brand-yellow" style={{ width: `${percent}%` }} /></div></div>)}</div>
               </div>
             </div>
-            <div className="relative p-7 pb-9">
-              <button type="button" onClick={() => scrollTrack(-1)} aria-label="Avaliações anteriores" className="absolute left-0 top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-brand-soft bg-background text-brand-deep shadow-md transition hover:bg-brand-pale"><ChevronLeft className="size-5" /></button>
-              <button type="button" onClick={() => scrollTrack(1)} aria-label="Próximas avaliações" className="absolute right-0 top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-brand-soft bg-background text-brand-deep shadow-md transition hover:bg-brand-pale"><ChevronRight className="size-5" /></button>
-              <div ref={trackRef} className="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 md:px-8">
-                {testimonials.map(({ name, avatar, reviews, date, quote }) => (
-                  <article key={name} className="w-full shrink-0 snap-start rounded-lg border border-brand-soft bg-background p-5 shadow-sm md:w-[calc(50%-10px)] lg:w-[calc((100%-2.5rem)/3)]">
+            <div className="marquee-pause overflow-hidden p-7 pb-9 [mask-image:linear-gradient(90deg,transparent,black_7%,black_93%,transparent)]">
+              <div className="marquee-track">
+                {[...testimonials, ...testimonials].map(({ name, avatar, reviews, date, quote }, i) => (
+                  <article key={`${name}-${i}`} className="mr-5 w-[320px] shrink-0 rounded-lg border border-brand-soft bg-background p-5 shadow-sm">
                     <div className="flex items-center gap-3">
                       <img src={avatar} alt={`Foto de ${name}`} loading="lazy" className="size-10 shrink-0 rounded-full object-cover" />
                       <div className="min-w-0">
@@ -210,7 +218,7 @@ function Index() {
                       </div>
                       <GoogleLogo className="ml-auto size-5 shrink-0" />
                     </div>
-                    <div className="mt-3 flex gap-0.5 text-brand-yellow" aria-label="5 de 5 estrelas">{[1,2,3,4,5].map(i => <Star key={i} className="size-4 fill-current" />)}</div>
+                    <div className="mt-3 flex gap-0.5 text-brand-yellow" aria-label="5 de 5 estrelas">{[1,2,3,4,5].map(j => <Star key={j} className="size-4 fill-current" />)}</div>
                     <blockquote className="mt-2 text-sm leading-relaxed text-muted-foreground">{quote}</blockquote>
                     <span className="mt-3 block text-xs font-semibold text-muted-foreground">{reviews}</span>
                   </article>
@@ -229,11 +237,11 @@ function Index() {
             <ToothIcon className="absolute -right-4 -top-4 size-16 rotate-12 text-brand-cyan" />
             <p className="float-mark absolute -left-6 bottom-8 rotate-[-6deg] font-hand text-3xl leading-none text-brand-light">Cuidado que<br />faz sorrir! ♡</p>
           </div>
-          <div>
+          <div data-reveal>
             <span className="section-label">Por que agendar?</span>
             <h2 className="mt-4 text-4xl font-black leading-tight">Por que agendar com o Dr. Daniel?</h2>
             <p className="mt-4 max-w-xl leading-relaxed text-brand-pale">Mais do que tratar dentes, o Dr. Daniel cuida de pessoas. Veja o que torna o atendimento dele diferente.</p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">{whyReasons.map(({ icon: Icon, title, text }) => <article key={title} className="rounded-lg bg-brand-light/10 p-5"><span className="grid size-11 place-items-center rounded-full bg-brand-cyan/20 text-brand-cyan"><Icon className="size-5" /></span><h3 className="mt-3 font-black">{title}</h3><p className="mt-1.5 text-sm leading-relaxed text-brand-pale">{text}</p></article>)}</div>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">{whyReasons.map(({ icon: Icon, title, text }, i) => <article key={title} data-reveal style={{ transitionDelay: `${i * 70}ms` }} className="rounded-lg bg-brand-light/10 p-5"><span className="grid size-11 place-items-center rounded-full bg-brand-cyan/20 text-brand-cyan"><Icon className="size-5" /></span><h3 className="mt-3 font-black">{title}</h3><p className="mt-1.5 text-sm leading-relaxed text-brand-pale">{text}</p></article>)}</div>
             <a href={DEFAULT_WHATSAPP} target="_blank" rel="noreferrer" className="mt-8 inline-flex items-center gap-3 rounded-full bg-brand-cyan px-7 py-4 font-black text-brand-deep shadow-xl"><MessageCircle className="size-5" /> Agende sua consulta pelo WhatsApp</a>
           </div>
         </div>
