@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import {
-  ArrowRight, Award, Baby, BadgeCheck, CalendarDays, Check, Clock3,
-  Facebook, GraduationCap, HeartHandshake, Instagram, MapPin, Menu,
-  MessageCircle, ShieldCheck, Smile, Sparkles, Star, Stethoscope,
-  UsersRound, X,
+  ArrowRight, Award, Baby, BadgeCheck, CalendarDays, Check, ChevronLeft,
+  ChevronRight, Clock3, Facebook, GraduationCap, HeartHandshake, Instagram,
+  MapPin, Menu, MessageCircle, ShieldCheck, Smile, Sparkles, Star,
+  Stethoscope, UsersRound, X,
 } from "lucide-react";
 
 const WHATSAPP_NUMBER = "5511999999999";
@@ -16,6 +16,12 @@ import profileImage from "@/assets/dentist-profile.jpg";
 import childImage from "@/assets/pediatric-care.jpg";
 import patientImage from "@/assets/patient-smile.jpg";
 import presentingImage from "@/assets/dentist-presenting.jpg";
+import avatarJuliana from "@/assets/avatar-juliana.jpg";
+import avatarMarcos from "@/assets/avatar-marcos.jpg";
+import avatarCarla from "@/assets/avatar-carla.jpg";
+import avatarRoberto from "@/assets/avatar-roberto.jpg";
+import avatarFernanda from "@/assets/avatar-fernanda.jpg";
+import avatarPaulo from "@/assets/avatar-paulo.jpg";
 
 function ToothIcon({ className }: { className?: string }) {
   return (
@@ -57,12 +63,12 @@ const heroBenefits = [
 ];
 
 const testimonials = [
-  { name: "Juliana Souza", initial: "J", color: "bg-brand-blue", reviews: "12 avaliações", date: "há 2 semanas", quote: "Meu filho adora ir ao consultório! O Dr. Daniel é super atencioso e faz toda a diferença no atendimento. O cuidado com as crianças é impressionante." },
-  { name: "Marcos Teixeira", initial: "M", color: "bg-brand-cyan", reviews: "5 avaliações", date: "há 1 mês", quote: "Profissional excelente, explica tudo com muita calma e segurança. Fiz um tratamento de canal e não senti nada. Recomendo de olhos fechados!" },
-  { name: "Carla Mendes", initial: "C", color: "bg-brand-deep", reviews: "8 avaliações", date: "há 3 meses", quote: "Sempre fui muito bem atendida. Ambiente acolhedor e equipe incrível. Meu sorriso está nas melhores mãos!" },
-  { name: "Roberto Alves", initial: "R", color: "bg-brand-blue", reviews: "3 avaliações", date: "há 3 meses", quote: "Atendimento pontual e muito profissional. O Dr. Daniel tirou todas as minhas dúvidas sobre o clareamento. Resultado ficou perfeito." },
-  { name: "Fernanda Lima", initial: "F", color: "bg-brand-cyan", reviews: "21 avaliações", date: "há 4 meses", quote: "Levei minha filha de 4 anos pela primeira vez e foi uma experiência maravilhosa. Ela saiu de lá pedindo para voltar!" },
-  { name: "Paulo Henrique", initial: "P", color: "bg-brand-deep", reviews: "7 avaliações", date: "há 5 meses", quote: "Coloquei aparelho ortodôntico com o Dr. Daniel e o acompanhamento é impecável. Preço justo e atendimento nota dez." },
+  { name: "Juliana Souza", avatar: avatarJuliana, reviews: "12 avaliações", date: "há 2 semanas", quote: "Meu filho adora ir ao consultório! O Dr. Daniel é super atencioso e faz toda a diferença no atendimento. O cuidado com as crianças é impressionante." },
+  { name: "Marcos Teixeira", avatar: avatarMarcos, reviews: "5 avaliações", date: "há 1 mês", quote: "Profissional excelente, explica tudo com muita calma e segurança. Fiz um tratamento de canal e não senti nada. Recomendo de olhos fechados!" },
+  { name: "Carla Mendes", avatar: avatarCarla, reviews: "8 avaliações", date: "há 3 meses", quote: "Sempre fui muito bem atendida. Ambiente acolhedor e equipe incrível. Meu sorriso está nas melhores mãos!" },
+  { name: "Roberto Alves", avatar: avatarRoberto, reviews: "3 avaliações", date: "há 3 meses", quote: "Atendimento pontual e muito profissional. O Dr. Daniel tirou todas as minhas dúvidas sobre o clareamento. Resultado ficou perfeito." },
+  { name: "Fernanda Lima", avatar: avatarFernanda, reviews: "21 avaliações", date: "há 4 meses", quote: "Levei minha filha de 4 anos pela primeira vez e foi uma experiência maravilhosa. Ela saiu de lá pedindo para voltar!" },
+  { name: "Paulo Henrique", avatar: avatarPaulo, reviews: "7 avaliações", date: "há 5 meses", quote: "Coloquei aparelho ortodôntico com o Dr. Daniel e o acompanhamento é impecável. Preço justo e atendimento nota dez." },
 ];
 
 const ratingBars = [
