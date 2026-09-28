@@ -256,3 +256,113 @@
     animation: none;
   }
 }
+
+/* Compact mobile composition: retain all copy and actions without stacking
+   full-size portraits or one service card per row. */
+@media (max-width: 639px) {
+  .page-shell { width: calc(100% - 32px); }
+  .section-label { font-size: 0.65rem; padding: 0.25rem 0.65rem; }
+  main > section:not(#inicio) { scroll-margin-top: 12px; }
+
+  #inicio { min-height: 0; }
+  #inicio > img { object-position: 64% center; }
+  #inicio > div.absolute { background: linear-gradient(90deg, var(--brand-deep) 0%, color-mix(in oklab, var(--brand-deep) 80%, transparent) 55%, color-mix(in oklab, var(--brand-deep) 40%, transparent) 100%); }
+  #inicio header { height: 68px; }
+  #inicio header svg:first-child { flex-shrink: 0; }
+  #inicio header a { min-width: 0; gap: 8px; }
+  #inicio header a strong { font-size: 0.9rem; }
+  #inicio header a small { font-size: 0.62rem; }
+  #inicio > div.page-shell { min-height: 0; padding-top: 45px; padding-bottom: 35px; }
+  #inicio h1 { margin-top: 17px; font-size: clamp(2.15rem, 9vw, 2.6rem); line-height: 1.04; }
+  #inicio h1 br { display: none; }
+  #inicio p { margin-top: 16px; font-size: 0.94rem; line-height: 1.5; }
+  #inicio a[href*="wa.me"] { margin-top: 21px; padding: 10px 17px; font-size: 0.9rem; }
+  #inicio div.grid.max-w-2xl { margin-top: 24px; gap: 10px; }
+  #inicio div.grid.max-w-2xl > div { font-size: 0.68rem; line-height: 1.2; }
+  #inicio div.grid.max-w-2xl span { width: 30px; height: 30px; }
+  #inicio div.grid.max-w-2xl svg { width: 16px; height: 16px; }
+
+  #servicos, #sobre, #odontopediatria, #odontologia-geral,
+  #depoimentos, #porque-agendar, #duvidas, #agendamento { padding-top: 42px; padding-bottom: 42px; }
+  #servicos .page-shell, #sobre .page-shell, #odontopediatria .page-shell,
+  #odontologia-geral .page-shell, #porque-agendar .page-shell, #agendamento .page-shell { gap: 24px; }
+  #servicos h2, #sobre h2, #odontopediatria h2, #odontologia-geral h2,
+  #porque-agendar h2, #agendamento h2 { margin-top: 10px; font-size: 1.75rem; line-height: 1.16; }
+  #servicos h2 br, #sobre h2 br, #odontologia-geral h2 br { display: none; }
+  #servicos p, #sobre p, #odontopediatria p, #odontologia-geral p,
+  #porque-agendar > div > div:last-child > p, #agendamento > div > div > p { margin-top: 10px; font-size: 0.9rem; line-height: 1.48; }
+  #servicos a[href*="wa.me"], #sobre a[href*="wa.me"],
+  #odontopediatria a[href*="wa.me"], #odontologia-geral a[href*="wa.me"],
+  #porque-agendar a[href*="wa.me"] { margin-top: 18px; padding: 10px 16px; font-size: 0.86rem; }
+
+  #servicos .grid.gap-4.sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+  #servicos article { min-width: 0; padding: 13px; }
+  #servicos article > svg { width: 25px; height: 25px; }
+  #servicos article h3 { margin-top: 8px; font-size: 0.83rem; line-height: 1.2; overflow-wrap: anywhere; }
+  #servicos article p { margin-top: 5px; font-size: 0.72rem; line-height: 1.35; }
+
+  #sobre .relative.mx-auto { max-width: 230px; }
+  #sobre .relative.mx-auto > div { border-width: 5px; }
+  #sobre .relative.mx-auto > svg { width: 44px; height: 44px; }
+  #sobre .flex.flex-wrap { margin-top: 18px; gap: 12px 18px; font-size: 0.67rem; }
+  #sobre .flex.flex-wrap svg { width: 24px; height: 24px; }
+
+  #odontopediatria .relative.mx-auto { width: min(100%, 270px); }
+  #odontopediatria img { aspect-ratio: 1.6; border-width: 5px; border-radius: 18px; }
+  #odontopediatria .relative.mx-auto > svg { width: 42px; height: 42px; }
+  #odontopediatria ul { margin-top: 14px; font-size: 0.82rem; gap: 7px; }
+  #odontopediatria ul li { gap: 8px; }
+
+  #odontologia-geral img { width: min(100%, 240px); height: 180px; margin-inline: auto; border-width: 5px; border-radius: 18px; }
+  #odontologia-geral ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; font-size: 0.75rem; line-height: 1.25; }
+  #odontologia-geral ul li { min-width: 0; gap: 7px; }
+  #odontologia-geral ul li span { flex-shrink: 0; width: 20px; height: 20px; }
+
+  #depoimentos h2 { font-size: 1.55rem; line-height: 1.2; }
+  #depoimentos .mx-auto.mt-9 { margin-top: 20px; border-radius: 8px; }
+  #depoimentos .border-b { flex-direction: row; justify-content: space-between; gap: 10px; padding: 14px; }
+  #depoimentos .border-b > div:first-child { min-width: 0; gap: 8px; }
+  #depoimentos .border-b > div:first-child > span { width: 32px; height: 32px; flex-shrink: 0; font-size: 1rem; }
+  #depoimentos .border-b strong { font-size: 0.77rem; line-height: 1.2; }
+  #depoimentos .border-b > div:first-child span.text-sm { display: none; }
+  #depoimentos .border-b > div:last-child { gap: 0; }
+  #depoimentos .border-b > div:last-child > div:first-child > span:first-child { font-size: 1.9rem; }
+  #depoimentos .border-b > div:last-child > div:last-child { display: none; }
+  #depoimentos .marquee-pause { padding: 14px 0 18px; }
+  #depoimentos article { width: 265px; margin-right: 10px; padding: 14px; }
+  #depoimentos .border-t { padding: 11px; }
+
+  #porque-agendar .relative.mx-auto { max-width: 100%; }
+  #porque-agendar .relative.mx-auto img { height: 190px; border-width: 5px; object-position: center 28%; }
+  #porque-agendar .relative.mx-auto > svg { width: 40px; height: 40px; }
+  #porque-agendar .relative.mx-auto p { left: 12px; bottom: 12px; font-size: 1.35rem; }
+  #porque-agendar .grid.gap-4.sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; margin-top: 18px; }
+  #porque-agendar article { min-width: 0; padding: 12px; }
+  #porque-agendar article > span { width: 28px; height: 28px; }
+  #porque-agendar article > span svg { width: 15px; height: 15px; }
+  #porque-agendar article h3 { margin-top: 7px; font-size: 0.78rem; line-height: 1.2; }
+  #porque-agendar article p { margin-top: 5px; font-size: 0.7rem; line-height: 1.35; }
+  #porque-agendar a[href*="wa.me"] { gap: 7px; font-size: 0.78rem; }
+
+  #porque-agendar + section { display: none; }
+  #duvidas h2 { font-size: 1.5rem; }
+  #duvidas .mt-6 { margin-top: 10px; }
+  #duvidas details { padding-block: 11px; font-size: 0.88rem; }
+  #duvidas details p { font-size: 0.83rem; }
+  #agendamento .space-y-4 { margin-top: 16px; gap: 8px; font-size: 0.82rem; }
+  #agendamento form { gap: 12px; padding: 17px; }
+  #agendamento textarea { height: 80px; }
+  #agendamento button { padding: 12px; font-size: 0.82rem; }
+  #contato { min-height: 0; }
+  #contato iframe { height: 170px; }
+  #contato > div { padding: 24px 16px; }
+  #contato > div svg:first-child { width: 32px; height: 32px; }
+  #contato h2 { margin-top: 7px; }
+  #contato p { margin-top: 7px; }
+  #contato a { margin-top: 12px; }
+  #contato p.font-hand { margin-top: 12px; font-size: 1.5rem; }
+  footer { padding-block: 24px; }
+  footer .page-shell { gap: 14px; }
+  footer nav { gap: 10px 16px; }
+  footer .page-shell.mt-9 { margin-top: 18px; }
+}
