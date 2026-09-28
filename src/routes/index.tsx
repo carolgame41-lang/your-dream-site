@@ -177,14 +177,14 @@ function Index() {
         </div>
       </section>
 
-      <section className="py-20">
+      <section id="odontopediatria" className="py-20">
         <div className="page-shell grid items-center gap-14 lg:grid-cols-2">
           <div data-reveal className="relative mx-auto max-w-lg"><img src={childImage} loading="lazy" width={912} height={800} alt="Atendimento odontopediátrico acolhedor" className="aspect-[1.08] w-full rounded-[50%] border-8 border-brand-cyan object-cover" /><ToothIcon className="absolute -left-4 top-4 size-16 -rotate-12 text-brand-cyan" /></div>
           <div data-reveal><span className="section-label">Odontopediatria</span><h2 className="mt-4 text-4xl font-black leading-tight text-brand-deep">Porque o sorriso do seu filho merece um cuidado especial</h2><p className="mt-4 leading-relaxed text-muted-foreground">A odontopediatria é a base para um futuro com mais saúde e confiança. Aqui, o atendimento é lúdico, acolhedor e seguro, para que a criança tenha uma experiência positiva e sem traumas.</p><ul className="mt-6 space-y-3 font-bold text-brand-blue">{["Prevenção de cáries","Acompanhamento do crescimento bucal","Orientação para hábitos saudáveis"].map(item => <li key={item} className="flex items-center gap-3"><span className="grid size-5 place-items-center rounded-full bg-brand-soft"><Check className="size-3" /></span>{item}</li>)}</ul><a href={DEFAULT_WHATSAPP} target="_blank" rel="noreferrer" className="mt-7 inline-flex items-center gap-2 rounded-full bg-brand-cyan px-6 py-3.5 font-black text-brand-deep"><MessageCircle className="size-5" /> Agende sua consulta</a></div>
         </div>
       </section>
 
-      <section className="bg-brand-deep py-20 text-brand-light">
+      <section id="odontologia-geral" className="bg-brand-deep py-20 text-brand-light">
         <div data-reveal className="page-shell grid items-center gap-12 lg:grid-cols-[1fr_0.8fr_0.8fr]">
           <div><span className="section-label">Odontologia geral</span><h2 className="mt-4 text-4xl font-black leading-tight">Mais saúde, estética<br />e bem-estar para o seu sorriso</h2><p className="mt-4 leading-relaxed text-brand-pale">Cuidar da sua saúde bucal é investir na sua qualidade de vida. Oferecemos tratamentos completos para adultos, com tecnologia, segurança e atendimento personalizado.</p><a href={DEFAULT_WHATSAPP} target="_blank" rel="noreferrer" className="mt-7 inline-flex items-center gap-2 rounded-full bg-brand-cyan px-6 py-3.5 font-black text-brand-deep"><MessageCircle className="size-5" /> Agende sua consulta</a></div>
           <img src={patientImage} loading="lazy" width={816} height={816} alt="Paciente sorrindo após atendimento" className="aspect-square w-full rounded-full border-8 border-brand-cyan object-cover" />
