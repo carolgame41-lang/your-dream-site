@@ -290,9 +290,11 @@ function Index() {
       >
         <img
           src={heroImage}
-          width={1280}
-          height={900}
+          width={1264}
+          height={848}
           alt="Dr. Daniel Cesar em seu consultório"
+          fetchPriority="high"
+          decoding="sync"
           className="absolute inset-0 h-full w-full object-cover object-[68%_top] lg:object-[73%_top] xl:object-[76%_top]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,var(--brand-deep)_0%,color-mix(in_oklab,var(--brand-deep)_92%,transparent)_38%,color-mix(in_oklab,var(--brand-deep)_28%,transparent)_70%,color-mix(in_oklab,var(--brand-deep)_48%,transparent)_100%)]" />
