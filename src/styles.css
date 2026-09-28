@@ -315,20 +315,27 @@
 
   #inicio {
     min-height: 0;
+    position: relative;
   }
   #inicio > img {
-    object-position: 64% top;
+    object-position: 72% top;
   }
   #inicio > div.absolute {
     background: linear-gradient(
-      90deg,
-      var(--brand-deep) 0%,
-      color-mix(in oklab, var(--brand-deep) 80%, transparent) 55%,
-      color-mix(in oklab, var(--brand-deep) 40%, transparent) 100%
+      180deg,
+      rgba(10, 34, 57, 0.3) 0%,
+      rgba(10, 34, 57, 0.08) 70px,
+      rgba(10, 34, 57, 0.18) 160px,
+      rgba(10, 34, 57, 0.55) 230px,
+      color-mix(in oklab, var(--brand-deep) 92%, transparent) 290px,
+      var(--brand-deep) 350px,
+      var(--brand-deep) 100%
     );
   }
   #inicio header {
-    height: 68px;
+    height: 64px;
+    position: relative;
+    z-index: 30;
   }
   #inicio header svg:first-child {
     flex-shrink: 0;
@@ -345,42 +352,60 @@
   }
   #inicio > div.page-shell {
     min-height: 0;
-    padding-top: 45px;
-    padding-bottom: 35px;
+    padding-top: clamp(195px, 28vh, 235px);
+    padding-bottom: 36px;
+  }
+  #inicio span.inline-flex {
+    font-size: 0.62rem;
+    padding: 0.28rem 0.7rem;
+    letter-spacing: 0.04em;
+    background: rgba(10, 34, 57, 0.5);
+    backdrop-filter: blur(8px);
   }
   #inicio h1 {
-    margin-top: 17px;
-    font-size: clamp(2.15rem, 9vw, 2.6rem);
-    line-height: 1.04;
+    margin-top: 12px;
+    font-size: clamp(1.85rem, 7.8vw, 2.25rem);
+    line-height: 1.08;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
   }
   #inicio h1 br {
     display: none;
   }
   #inicio p {
-    margin-top: 16px;
-    font-size: 0.94rem;
-    line-height: 1.5;
+    margin-top: 11px;
+    font-size: 0.88rem;
+    line-height: 1.46;
+    color: var(--brand-pale);
   }
   #inicio a[href*="wa.me"] {
-    margin-top: 21px;
-    padding: 10px 17px;
-    font-size: 0.9rem;
+    margin-top: 18px;
+    padding: 12px 20px;
+    font-size: 0.88rem;
+    font-weight: 900;
+    width: 100%;
+    justify-content: center;
+    box-shadow: 0 8px 24px -4px rgba(0, 212, 212, 0.35);
   }
   #inicio div.grid.max-w-2xl {
-    margin-top: 24px;
-    gap: 10px;
+    margin-top: 20px;
+    gap: 7px;
   }
   #inicio div.grid.max-w-2xl > div {
     font-size: 0.68rem;
     line-height: 1.2;
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(4px);
   }
   #inicio div.grid.max-w-2xl span {
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
   }
   #inicio div.grid.max-w-2xl svg {
-    width: 16px;
-    height: 16px;
+    width: 13px;
+    height: 13px;
   }
 
   #servicos,
