@@ -209,11 +209,24 @@
     opacity: 0;
     transform: translateY(28px);
     transition: opacity 0.7s ease, transform 0.7s ease;
+    will-change: opacity, transform;
   }
 
   [data-reveal].is-visible {
     opacity: 1;
     transform: none;
+    will-change: auto;
+  }
+
+  a[href*="wa.me"],
+  button[type="submit"] {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  }
+
+  a[href*="wa.me"]:hover,
+  button[type="submit"]:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.03);
   }
 }
 
@@ -225,6 +238,7 @@
   display: flex;
   width: max-content;
   animation: marquee 38s linear infinite;
+  will-change: transform;
 }
 
 .marquee-pause:hover .marquee-track {
